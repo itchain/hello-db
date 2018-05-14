@@ -3,13 +3,9 @@ version: '2'
 services:
   postgresql:
     image: 'bitnami/postgresql:latest'
-    labels:
-      kompose.service.type: nodeport
     ports:
       - '5432:5432'
-    volumes:
-      - 'postgresql_data:/bitnami'
-
-volumes:
-  postgresql_data:
-    driver: local
+    environment:
+      - POSTGRESQL_USERNAME=my_user
+      - POSTGRESQL_PASSWORD=1234
+      - POSTGRESQL_DATABASE=my_db
